@@ -1,6 +1,7 @@
 package jamilligioielli.com.github.gs2.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,7 +34,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.compose.ui.tooling.preview.Preview
 import jamilligioielli.com.github.gs2.R
+import jamilligioielli.com.github.gs2.ui.theme.GS2Theme
 
 import kotlin.math.pow
 
@@ -76,10 +79,10 @@ fun IMCScreen(modifier: Modifier = Modifier, navController: NavController) {
             // ---- header ---------
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(180.dp)
-                    .background(colorResource(id = R.color.white))
             ) {
                 Text(
                     text = "Calculadora IMC",
@@ -88,9 +91,18 @@ fun IMCScreen(modifier: Modifier = Modifier, navController: NavController) {
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(top = 12.dp, bottom = 24.dp)
                 )
-
+                Button(
+                    onClick = { navController.navigate("menu") },
+                    colors = ButtonDefaults.buttonColors(Color.White),
+                    modifier = Modifier.size(width = 200.dp, height = 48.dp)
+                ) {
+                    Text(
+                        text = "Menu",
+                        fontSize = 20.sp,
+                        color = Color.Blue
+                    )
+                }
             }
-            // --- formulário
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -101,7 +113,7 @@ fun IMCScreen(modifier: Modifier = Modifier, navController: NavController) {
                         .offset(y = (-30).dp)
                         .fillMaxWidth(),
                     colors = CardDefaults
-                        .cardColors(containerColor = Color(0xfff9f6f6)),
+                        .cardColors(containerColor = Color(0xFF294CC0)),
                     elevation = CardDefaults.cardElevation(4.dp)
                 ) {
                     Column(modifier = Modifier.padding(24.dp)) {
@@ -198,14 +210,13 @@ fun IMCScreen(modifier: Modifier = Modifier, navController: NavController) {
                                 .height(48.dp),
                             shape = RoundedCornerShape(16.dp),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor =
-                                    colorResource(id = R.color.black)
+                                containerColor =Color(0xFF294134)
                             )
                         ) {
                             Text(
                                 text = "CALCULAR",
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Cyan,
+                                color = Color.White,
                                 fontSize = 14.sp
                             )
                         }
@@ -230,8 +241,11 @@ fun IMCScreen(modifier: Modifier = Modifier, navController: NavController) {
                     .fillMaxSize()
             ) {
                 Column() {
+                    var texto = "Resultado";
+                    if (!nome.value.isEmpty())
+                        texto = "${nome.value}, seu resultado";
                     Text(
-                        text = "${nome.value}, seu resultado",
+                        text = texto,
                         color = Color.Black,
                         fontSize = 14.sp
                     )
@@ -247,27 +261,8 @@ fun IMCScreen(modifier: Modifier = Modifier, navController: NavController) {
                     modifier = Modifier.fillMaxWidth(),
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
-                    fontSize = 36.sp,
+                    fontSize = 24.sp,
                     textAlign = TextAlign.End
-                )
-            }
-        }
-
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.Center)
-        ) {
-            Button(
-                onClick = { navController.navigate("menu") },
-                colors = ButtonDefaults.buttonColors(Color.White),
-                modifier = Modifier.size(width = 200.dp, height = 48.dp)
-            ) {
-                Text(
-                    text = "Menu",
-                    fontSize = 20.sp,
-                    color = Color.Blue
                 )
             }
         }
