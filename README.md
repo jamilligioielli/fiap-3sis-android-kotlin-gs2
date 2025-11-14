@@ -9,7 +9,7 @@ O projeto feito para a entrega da Global Solutions é uma aplicação Android cr
 
 A página inicial da aplicação apresenta uma tela de login, na qual o usuário digita seu nome de usuario e senha.
 
-![inicial](./imgs/tela-inicial.png)
+![inicial](./imgs/tela-login.png)
 
 
 Ao pressionar o botão "Logar", caso as credenciais estejam corretas, o aplicativo redireciona para a tela de Menu, na qual o usuário pode escolher ir para a tela de cálculo do IMC, acessar a tela de equipe ou sair.
